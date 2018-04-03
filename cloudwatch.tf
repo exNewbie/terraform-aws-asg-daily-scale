@@ -10,7 +10,7 @@ resource "aws_cloudwatch_event_target" "Daily-ASG-ScaleUp-Target" {
 
   input = <<EOF
 {
-  "ParamStore-Name": "",
+  "ParamStore-Name": "${aws_ssm_parameter.ALB-ASG-Scale-Info.name}",
   "ASG-Name": "${var.asg_name}"
 }
 EOF
@@ -28,7 +28,7 @@ resource "aws_cloudwatch_event_target" "Daily-ASG-ScaleDown-Target" {
 
   input = <<EOF
 {
-  "ParamStore-Name": "",
+  "ParamStore-Name": "${aws_ssm_parameter.ALB-ASG-Scale-Info.name}",
   "ASG-Name": "${var.asg_name}"
 }
 EOF
