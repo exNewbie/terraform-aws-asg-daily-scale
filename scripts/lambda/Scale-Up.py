@@ -11,7 +11,7 @@ def lambda_handler(event, context):
         asg_param = ssm.get_parameter( Name=asg_param_name )
 
     except:
-        print "Name=" + asg_param_name + " throw exceptions"
+        print("Name=" + asg_param_name + " throw exceptions")
         exit()
 
     stored_params = str(asg_param['Parameter']['Value']).split(', ') #MinSize:1, MaxSize: 1, DesiredCapacity: 1
