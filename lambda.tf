@@ -14,7 +14,7 @@ data "archive_file" "Scale-Down" {
 
 
 resource "aws_lambda_function" "Scale-Up" {
-  filename         = "Scale-Up.py.zip"
+  filename         = "${data.archive_file.Scale-Up.output_path}"
   function_name    = "Scale-Up"
   role             = "${aws_iam_role.Lambda-ASG-Scale.arn}"
   handler          = "Scale-Up.lambda_handler"
