@@ -10,8 +10,8 @@ data "archive_file" "Scale-Down" {
   source_file = "${path.module}/scripts/lambda/Scale-Down.py"
   output_path = "${path.module}/scripts/lambda/Scale-Down.zip"
 }
-### Lambda functions ###
 
+### Lambda functions ###
 
 resource "aws_lambda_function" "Scale-Up" {
   filename         = "${data.archive_file.Scale-Up.output_path}"
@@ -43,3 +43,4 @@ resource "aws_lambda_permission" "SSM-Automation-ExecuteEBSBackup-Schedule" {
   source_arn    = "${aws_cloudwatch_event_rule.DailyEBSBackup.arn}"
 }
 */
+
