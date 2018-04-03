@@ -50,4 +50,3 @@ resource "aws_lambda_permission" "Daily-ASG-ScaleUp-Permission" {
   principal     = "events.amazonaws.com"
   source_arn    = "${aws_cloudwatch_event_rule.Daily-ASG-ScaleUp.arn}"
 }
-
