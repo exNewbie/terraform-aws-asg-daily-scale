@@ -1,10 +1,11 @@
-/* Lambda functions */
+### Lambda functions ###
+
 resource "aws_lambda_function" "Scale-Up" {
   filename         = "Scale-Up.py.zip"
   function_name    = "Scale-Up"
   role             = "${aws_iam_role.Lambda-ASG-Scale.arn}"
   handler          = "Scale-Up.lambda_handler"
-  source_code_hash = "${base64sha256(file("${path.module}/Scale-Up.py.zip"))}"
+  source_code_hash = "${base64sha256(file("${path.module}/scripts/lambda/Scale-Up.py.zip"))}"
   runtime          = "python3.6"
   timeout          = "300"
 }
@@ -14,7 +15,7 @@ resource "aws_lambda_function" "Scale-Down" {
   function_name    = "Scale-Down"
   role             = "${aws_iam_role.Lambda-ASG-Scale.arn}"
   handler          = "Scale-Down.lambda_handler"
-  source_code_hash = "${base64sha256(file("${path.module}/Scale-Down.py.zip"))}"
+  source_code_hash = "${base64sha256(file("${path.module}/scripts/lambda/Scale-Down.py.zip"))}"
   runtime          = "python3.6"
   timeout          = "300"
 }
