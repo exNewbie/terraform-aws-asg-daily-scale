@@ -1,7 +1,7 @@
 ## scale up ##
 resource "aws_cloudwatch_event_rule" "Daily-ASG-ScaleUp" {
   name                = "Daily-ASG-ScaleUp"
-  schedule_expression = "cron(55 09 * * ? *)"
+  schedule_expression = "cron(55 09 * * 1-5 *)"
 }
 
 resource "aws_cloudwatch_event_target" "Daily-ASG-ScaleUp-Target" {
