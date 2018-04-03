@@ -33,14 +33,21 @@ resource "aws_lambda_function" "Scale-Down" {
   timeout          = "300"
 }
 
-/* Lambda permits CloudWatch to execute */
-/*
-resource "aws_lambda_permission" "SSM-Automation-ExecuteEBSBackup-Schedule" {
+### Lambda permits CloudWatch to execute ###
+
+resource "aws_lambda_permission" "Daily-ASG-ScaleDown-Permission" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.SSM-Automation-ExecuteEBSBackup.function_name}"
+  function_name = "${aws_lambda_function.Scale-Down.function_name}"
   principal     = "events.amazonaws.com"
-  source_arn    = "${aws_cloudwatch_event_rule.DailyEBSBackup.arn}"
+  source_arn    = "${aws_cloudwatch_event_rule.Daily-ASG-ScaleDown.arn}"
 }
-*/
+
+resource "aws_lambda_permission" "Daily-ASG-ScaleUp-Permission" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.Scale-Up.function_name}"
+  principal     = "events.amazonaws.com"
+  source_arn    = "${aws_cloudwatch_event_rule.Daily-ASG-ScaleUp.arn}"
+}
 
