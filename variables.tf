@@ -8,8 +8,3 @@ variable "asg_name" {
 ### Data ###
 
 data "aws_caller_identity" "current" {}
-
-data "aws_ssm_parameter" "ALB-ASG-Scale-Info" {
-  name = "ALB-ASG-Scale-Info"
-}
-
