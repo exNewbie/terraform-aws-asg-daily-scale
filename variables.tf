@@ -9,9 +9,8 @@ variable "asg_name" {
 
 data "aws_caller_identity" "current" {}
 
-/*
 data "aws_ssm_parameter" "ALB-ASG-Scale-Info" {
   name = "ALB-ASG-Scale-Info"
+  depends_on = ["aws_ssm_parameter.ALB-ASG-Scale-Info"]
 }
-*/
 
