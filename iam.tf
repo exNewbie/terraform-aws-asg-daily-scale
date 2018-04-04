@@ -63,3 +63,26 @@ resource "aws_iam_role_policy" "Modify-ASGSize" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "Write-Logs" {
+  name = "Write-Logs"
+  role = "${aws_iam_role.Lambda-ASG-Scale.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:${data.aws_caller_identity.current.account_id}:*"
+    }
+  ]
+}
+EOF
+}
+
